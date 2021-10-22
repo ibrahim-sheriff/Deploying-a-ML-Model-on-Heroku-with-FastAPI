@@ -1,0 +1,8 @@
+dvc
+numpy
+fastapi
+flake8
+pandas
+pytest
+scikit-learn
+uvicorn
