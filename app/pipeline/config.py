@@ -26,7 +26,7 @@ if isinstance(MODEL, RandomForestClassifier):
     }
 elif isinstance(MODEL, LogisticRegression):
     PARAM_GRID = {
-        'model__C': np.linspace(0.1, 10, 20)
+        'model__C': np.linspace(0.1, 10, 5)
     }
 
 FEATURES = {
@@ -51,6 +51,10 @@ FEATURES = {
 
 __DATA_FILE = 'edited_census.csv'
 __MODEL_FILE = 'pipe_' + MODEL.__class__.__name__
+__EVAL_FILE = 'model_evaluation.txt'
+__SLICE_FILE = 'slice_output.txt'
 
 DATA_DIR = os.path.join(__MAIN_DIR, 'data', __DATA_FILE)
 MODEL_DIR = os.path.join(__MAIN_DIR, 'models', __MODEL_FILE)
+EVAL_DIR = os.path.join(__MAIN_DIR, 'metrics', __EVAL_FILE)
+SLICE_DIR = os.path.join(__MAIN_DIR, 'metrics', __SLICE_FILE)

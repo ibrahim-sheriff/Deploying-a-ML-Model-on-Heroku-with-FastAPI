@@ -13,9 +13,9 @@ def get_clean_data(path):
     # remove duplicates
     data_df = data_df[~data_df.duplicated()]
 
-    data_df['salary_df'] = data_df['salary_df'].map({'>50K': 0, '<=50K': 1})
+    data_df['salary'] = data_df['salary'].map({'>50K': 0, '<=50K': 1})
 
-    y_df = data_df.pop('salary_df')
+    y_df = data_df.pop('salary')
     x_df = data_df
 
     return x_df, y_df
