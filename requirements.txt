@@ -6,3 +6,4 @@ pandas
 pytest
 scikit-learn
 uvicorn
+great_expectations
