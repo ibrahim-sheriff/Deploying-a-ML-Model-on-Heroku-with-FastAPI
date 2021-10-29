@@ -5,7 +5,7 @@ import numpy as np
 from fastapi import FastAPI, Body
 
 from config import MODEL_DIR, APP_CONFIG
-from api.schemas import Person, FeatureInfo
+from app.schemas import Person, FeatureInfo
 
 
 model = joblib.load(MODEL_DIR)
@@ -36,4 +36,4 @@ async def predict(person: Person = Body(..., examples=config['post_examples'])):
     pred_probs = float(model.predict_proba(df)[:, 1])
     pred = '>50k' if pred_label == 1 else '<=50k'
     
-    return {'Label': pred_label, 'Prob': pred_probs, 'Salary': pred}
+    return {'label': pred_label, 'prob': pred_probs, 'salary': pred}

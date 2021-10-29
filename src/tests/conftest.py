@@ -9,8 +9,8 @@ import pandas as pd
 import great_expectations as ge
 from sklearn.model_selection import train_test_split
 
-from .. import config
-from ..pipeline.data import get_clean_data
+import config
+from pipeline.data import get_clean_data
 
 
 @pytest.fixture(scope='session')

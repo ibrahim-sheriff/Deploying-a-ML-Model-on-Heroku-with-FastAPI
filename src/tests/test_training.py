@@ -11,9 +11,10 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder, StandardScaler
 
-from app.pipeline import config
-from app.pipeline.data import get_clean_data
-from app.pipeline.model import get_model_pipeline, train_model, inference_model, compute_metrics
+import config
+from pipeline.data import get_clean_data
+from pipeline.evaluate import compute_metrics
+from pipeline.model import get_model_pipeline, train_model, inference_model
 
 
 def test_model_pipeline(sample_data):

@@ -5,17 +5,17 @@ This script holds the config data for training model pipeline and running tests
 related to the pipeline
 """
 import os
+from pathlib import Path
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 
 TEST_SIZE = 0.3
 RANDOM_STATE = 17
-__MAIN_DIR = os.path.abspath('../')
+__MAIN_DIR = Path(__file__).parent.parent.absolute()
 
-
-#MODEL = RandomForestClassifier(class_weight='balanced', random_state=RANDOM_STATE)
-MODEL = LogisticRegression(max_iter=2000, class_weight='balanced', random_state=RANDOM_STATE)
+MODEL = RandomForestClassifier(class_weight='balanced', random_state=RANDOM_STATE)
+#MODEL = LogisticRegression(max_iter=2000, class_weight='balanced', random_state=RANDOM_STATE)
 PARAM_GRID = None
 
 if isinstance(MODEL, RandomForestClassifier):
@@ -62,4 +62,4 @@ MODEL_DIR = os.path.join(__MAIN_DIR, 'models', __MODEL_FILE)
 EVAL_DIR = os.path.join(__MAIN_DIR, 'metrics', __EVAL_FILE)
 SLICE_DIR = os.path.join(__MAIN_DIR, 'metrics', __SLICE_FILE)
 
-APP_CONFIG = os.path.join(__MAIN_DIR, 'src', 'api', 'config.yaml')
+APP_CONFIG = os.path.join(__MAIN_DIR, 'src', 'app', 'config.yaml')
