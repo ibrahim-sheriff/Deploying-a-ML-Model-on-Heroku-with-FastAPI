@@ -1,2 +1,0 @@
-Precision = 0.906, Recall = 0.933, F1 = 0.880
-Precision = 0.904, Recall = 0.934, F1 = 0.875
