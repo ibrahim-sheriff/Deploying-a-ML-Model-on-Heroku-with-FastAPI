@@ -15,11 +15,11 @@ class FeatureInfo(str, Enum):
     race = "race"
     sex = "sex"
     captial_gain = "capital_gain"
-    captial_loss  ="capital_loss"
+    captial_loss = "capital_loss"
     hours_per_week = "hours_per_week"
     native_country = "native_country"
 
-   
+
 class Person(BaseModel):
     age: int
     workclass: Optional[str] = None

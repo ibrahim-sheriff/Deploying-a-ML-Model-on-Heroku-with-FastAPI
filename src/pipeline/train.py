@@ -3,8 +3,6 @@ Author: Ibrahim Sherif
 Date: October, 2021
 This script used to train and save the model
 """
-from sklearn.model_selection import train_test_split
-
 from pipeline.model import get_model_pipeline, train_model
 
 

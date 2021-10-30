@@ -10,7 +10,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder, StandardScaler
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.model_selection import GridSearchCV, StratifiedKFold
-from sklearn.metrics import fbeta_score, precision_score, recall_score
 
 
 def get_model_pipeline(model, feats):
@@ -69,6 +68,7 @@ def train_model(model, X_train, y_train, param_grid):
     _ = g_search.fit(X_train, y_train)
 
     return g_search.best_estimator_
+
 
 def inference_model(model, X):
 

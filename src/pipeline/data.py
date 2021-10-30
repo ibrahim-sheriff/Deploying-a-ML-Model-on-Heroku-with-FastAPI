@@ -9,12 +9,12 @@ import pandas as pd
 def get_clean_data(path):
 
     data_df = pd.read_csv(path)
-    
+
     # chaning column names to use _ instead of -
     columns = data_df.columns
     columns = [col.replace('-', '_') for col in columns]
     data_df.columns = columns
-    
+
     # remove duplicates
     data_df = data_df[~data_df.duplicated()]
 
@@ -24,7 +24,7 @@ def get_clean_data(path):
 
     # map label salary to numbers
     data_df['salary'] = data_df['salary'].map({'>50k': 1, '<=50k': 0})
-    
+
     y_df = data_df.pop('salary')
     x_df = data_df
 
