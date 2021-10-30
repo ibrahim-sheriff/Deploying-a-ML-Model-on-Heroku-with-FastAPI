@@ -31,3 +31,10 @@ jobs:
         aws-region: eu-west-1
         role-duration-seconds: 500
         role-session-name: Github_Action
+    - name: DVC install and pull
+    - uses: iterative/setup-dvc@v1
+      run: |
+        dvc pull 
+    - name: Test with pytest # Final action which runs pytest. If any test fails, then this Action fails
+      run: |
+        pytest src/tests
