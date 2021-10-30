@@ -35,7 +35,7 @@ def test_model_pipeline(sample_data):
         isinstance(model_pipe[1], LogisticRegression) & isinstance(model_pipe[0].transformers[1][1][1], OneHotEncoder)
     ) or (
         isinstance(model_pipe[1], RandomForestClassifier) & isinstance(model_pipe[0].transformers[1][1][1], OrdinalEncoder)
-    ), "Second step: column transformer Pipeline != second step: OneHotEncoder for LogisticRegression or LabelEncoder for RandomForestClassifier"
+    ), "Second step: column transformer Pipeline != second step: OHE for LogisticRegression or LE for RandomForestClassifier"
     assert model_pipe[0].transformers[1][2] == feats[
         'categorical'], f"{feats['categorical']} only should be included in column transformer second step"
 

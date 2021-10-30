@@ -21,7 +21,7 @@ def slice_metrics(column, X, y_true, y_pred):
             df[df[column] == categ]['salary']
         )
         metrics.append([categ, prec, rec, f1])
-        #print(f"[INFO] {categ}: Precision = {prec:.3f}, Recall = {rec:.3f}, F1 = {f1:.3f}")
+        # print(f"[INFO] {categ}: Precision = {prec:.3f}, Recall = {rec:.3f}, F1 = {f1:.3f}")
 
     return pd.DataFrame(
         metrics,

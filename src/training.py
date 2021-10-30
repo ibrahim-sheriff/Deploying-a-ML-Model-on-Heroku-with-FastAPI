@@ -16,21 +16,26 @@ def run():
     print("[INFO] Splitting data to train and test")
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=config.TEST_SIZE, random_state=config.RANDOM_STATE, stratify=y)
-    
+
     print("[INFO] Started model training")
-    model_pipe = train(config.MODEL, X_train, y_train, config.PARAM_GRID, config.FEATURES)
-    
+    model_pipe = train(
+        config.MODEL,
+        X_train,
+        y_train,
+        config.PARAM_GRID,
+        config.FEATURES)
+
     print("[INFO] Evaluating and saving metrics to file")
     with open(config.EVAL_DIR, 'w') as file:
         evaluate(file, model_pipe, X_train, y_train, "train")
         evaluate(file, model_pipe, X_test, y_test, "test")
-    
+
     print("[INFO] Evaluating slices and saving to file")
     with open(config.SLICE_DIR, 'w') as file:
-            for col in config.SLICE_COLUMNS:
-                evaluate_slices(file, model_pipe, col, X_train, y_train, "train")
-                evaluate_slices(file, model_pipe, col, X_test, y_test, "train")
-    
+        for col in config.SLICE_COLUMNS:
+            evaluate_slices(file, model_pipe, col, X_train, y_train, "train")
+            evaluate_slices(file, model_pipe, col, X_test, y_test, "train")
+
     print("[INFO] Saving model")
     joblib.dump(model_pipe, config.MODEL_DIR)
 

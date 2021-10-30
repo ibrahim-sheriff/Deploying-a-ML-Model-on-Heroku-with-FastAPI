@@ -1,7 +1,7 @@
 """
 Author: Ibrahim Sherif
 Date: October, 2021
-This script holds the config data for training model pipeline and running tests 
+This script holds the config data for training model pipeline and running tests
 related to the pipeline
 """
 import os
@@ -14,8 +14,13 @@ TEST_SIZE = 0.3
 RANDOM_STATE = 17
 __MAIN_DIR = Path(__file__).parent.parent.absolute()
 
-MODEL = RandomForestClassifier(class_weight='balanced', random_state=RANDOM_STATE)
-#MODEL = LogisticRegression(max_iter=2000, class_weight='balanced', random_state=RANDOM_STATE)
+MODEL = RandomForestClassifier(
+    class_weight='balanced',
+    random_state=RANDOM_STATE)
+# MODEL = LogisticRegression(
+#     max_iter=2000,
+#     class_weight='balanced',
+#     random_state=RANDOM_STATE)
 PARAM_GRID = None
 
 if isinstance(MODEL, RandomForestClassifier):
