@@ -22,7 +22,7 @@ def data():
     X_df, y_df = get_clean_data(config.DATA_DIR)
     X_df['salary'] = y_df
     X_df['salary'] = X_df['salary'].map({1: '>50k', 0: '<=50k'})
-    
+
     df = ge.from_pandas(X_df)
 
     return df
@@ -40,10 +40,10 @@ def sample_data():
     columns = data_df.columns
     columns = [col.replace('-', '_') for col in columns]
     data_df.columns = columns
-    
+
     # make all characters to be lowercase in string columns
     data_df = data_df.applymap(
-        lambda s: s.lower() if type(s) == str else s)
+        lambda s: s.lower() if isinstance(s, str) else s)
 
     data_df['salary'] = data_df['salary'].map({'>50k': 1, '<=50k': 0})
 
@@ -51,7 +51,6 @@ def sample_data():
     X_df = data_df
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X_df, y_df, test_size=0.3, random_state=config.RANDOM_STATE, stratify=y_df
-    )
+        X_df, y_df, test_size=0.3, random_state=config.RANDOM_STATE, stratify=y_df)
 
     return X_train, X_test, y_train, y_test

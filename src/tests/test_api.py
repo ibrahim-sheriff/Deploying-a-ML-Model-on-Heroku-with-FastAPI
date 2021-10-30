@@ -7,11 +7,13 @@ from app.api import app
 
 client = TestClient(app)
 
+
 def test_greetings():
     response = client.get('/')
     assert response.status_code == HTTPStatus.OK
     assert response.request.method == "GET"
     assert response.json() == 'Greetings and salutations everybody'
+
 
 @pytest.mark.parametrize('test_input, expected', [
     ('age', "Age of the person - numerical - int"),
@@ -23,6 +25,7 @@ def test_feature_info(test_input, expected):
     assert response.status_code == HTTPStatus.OK
     assert response.request.method == "GET"
     assert response.json() == expected
+
 
 def test_predict():
     data = {
@@ -38,8 +41,10 @@ def test_predict():
     assert response.request.method == "POST"
     assert response.json()['label'] == 0 or response.json()['label'] == 1
     assert response.json()['prob'] >= 0 and response.json()['label'] <= 1
-    assert response.json()['salary'] == '>50k' or response.json()['salary'] == '<=50k'
-    
+    assert response.json()['salary'] == '>50k' or response.json()[
+        'salary'] == '<=50k'
+
+
 def test_missing_feature_predict():
     data = {
         "age": 0

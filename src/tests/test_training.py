@@ -28,9 +28,9 @@ def test_model_pipeline(sample_data):
         'drop'], f"{feats['drop']} only should be dropped"
 
     assert isinstance(model_pipe[0].transformers[1][1],
-            Pipeline), "Second step: column transformer != Pipeline"
+                      Pipeline), "Second step: column transformer != Pipeline"
     assert isinstance(model_pipe[0].transformers[1][1][0],
-            SimpleImputer), "Second step: column transformer Pipeline != first step: SimpleImputer"
+                      SimpleImputer), "Second step: column transformer Pipeline != first step: SimpleImputer"
     assert (
         isinstance(model_pipe[1], LogisticRegression) & isinstance(model_pipe[0].transformers[1][1][1], OneHotEncoder)
     ) or (
