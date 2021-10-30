@@ -32,7 +32,7 @@ jobs:
         role-duration-seconds: 500
         role-session-name: Github_Action
     - name: DVC install
-    - uses: iterative/setup-dvc@v1
+      uses: iterative/setup-dvc@v1
     - name: DVC pull
       run: |
         dvc pull 
