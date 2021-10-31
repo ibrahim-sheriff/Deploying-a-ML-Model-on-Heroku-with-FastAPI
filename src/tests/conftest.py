@@ -15,7 +15,12 @@ from pipeline.data import get_clean_data
 
 @pytest.fixture(scope='session')
 def data():
+    """
+    Data loaded from csv file used for tests
 
+    Returns:
+        df (ge.DataFrame): Data loaded from csv file
+    """
     if not os.path.exists(config.DATA_DIR):
         pytest.fail(f"Data not found at path: {config.DATA_DIR}")
 
@@ -30,7 +35,15 @@ def data():
 
 @pytest.fixture(scope='session')
 def sample_data():
+    """
+    Sampled data from csv file used for tests
 
+    Returns:
+        X_train: Features train data
+        X_test: Features test data
+        y_train: Labels train data
+        y_test: Labels test data
+    """
     if not os.path.exists(config.DATA_DIR):
         pytest.fail(f"Data not found at path: {config.DATA_DIR}")
 

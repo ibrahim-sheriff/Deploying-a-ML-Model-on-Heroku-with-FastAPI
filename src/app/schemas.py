@@ -1,3 +1,8 @@
+"""
+Author: Ibrahim Sherif
+Date: October, 2021
+This script holds schemas for fastapi app
+"""
 from enum import Enum
 from typing import Optional
 from pydantic import BaseModel

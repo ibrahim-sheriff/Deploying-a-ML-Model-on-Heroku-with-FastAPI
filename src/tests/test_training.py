@@ -4,6 +4,7 @@ Date: October, 2021
 This script holds the test functions for training model
 """
 import joblib
+import pandas as pd
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.ensemble import RandomForestClassifier
@@ -17,8 +18,10 @@ from pipeline.evaluate import compute_metrics
 from pipeline.model import get_model_pipeline, train_model, inference_model
 
 
-def test_model_pipeline(sample_data):
-    _, _, _, _ = sample_data
+def test_model_pipeline():
+    """
+    Tests if model pipeline is created with correct steps
+    """
     feats = config.FEATURES
 
     model_pipe = get_model_pipeline(config.MODEL, feats)
@@ -45,8 +48,13 @@ def test_model_pipeline(sample_data):
         'numeric'], f"{feats['numeric']} only should be included in column transformer third step"
 
 
-def test_model_output_shape(sample_data):
+def test_model_output_shape(sample_data: pd.DataFrame):
+    """
+    Test model predictions are of correct shape
 
+    Args:
+        sample_data (pd.DataFrame): Sample data to be tested
+    """
     X_train, X_test, y_train, _ = sample_data
     model = get_model_pipeline(config.MODEL, config.FEATURES)
 
@@ -65,8 +73,13 @@ def test_model_output_shape(sample_data):
         0], f"Predictions output shape {y_test_pred.shape[0]} is incorrect does not match input shape {X_test.shape[0]}"
 
 
-def test_model_output_range(sample_data):
+def test_model_output_range(sample_data: pd.DataFrame):
+    """
+    Test model predictions are within range 0-1
 
+    Args:
+        sample_data (pd.DataFrame): [description]
+    """
     X_train, X_test, y_train, _ = sample_data
     model = get_model_pipeline(config.MODEL, config.FEATURES)
 
@@ -82,7 +95,9 @@ def test_model_output_range(sample_data):
 
 
 def test_model_evaluation():
-
+    """
+    Test evaluated model metrics are above certain thresholds
+    """
     X, y = get_clean_data(config.DATA_DIR)
 
     X_train, X_test, y_train, y_test = train_test_split(

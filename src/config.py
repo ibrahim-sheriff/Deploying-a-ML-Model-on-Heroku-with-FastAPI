@@ -5,8 +5,8 @@ This script holds the config data for training model pipeline and running tests
 related to the pipeline
 """
 import os
-from pathlib import Path
 import numpy as np
+from pathlib import Path
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 
@@ -67,4 +67,4 @@ MODEL_DIR = os.path.join(__MAIN_DIR, 'models', __MODEL_FILE)
 EVAL_DIR = os.path.join(__MAIN_DIR, 'metrics', __EVAL_FILE)
 SLICE_DIR = os.path.join(__MAIN_DIR, 'metrics', __SLICE_FILE)
 
-APP_CONFIG = os.path.join(__MAIN_DIR, 'src', 'app', 'config.yaml')
+APP_CONFIG = os.path.join(__MAIN_DIR, 'src', 'app', 'examples.yaml')

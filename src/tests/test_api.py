@@ -1,3 +1,8 @@
+"""
+Author: Ibrahim Sherif
+Date: October, 2021
+This script holds the test functions for api module
+"""
 import pytest
 from http import HTTPStatus
 from fastapi.testclient import TestClient
@@ -9,6 +14,9 @@ client = TestClient(app)
 
 
 def test_greetings():
+    """
+    Tests GET greetings function
+    """
     response = client.get('/')
     assert response.status_code == HTTPStatus.OK
     assert response.request.method == "GET"
@@ -20,7 +28,14 @@ def test_greetings():
     ('fnlgt', 'MORE INFO NEEDED - numerical - int'),
     ('race', 'Race of the person - nominal categorical - str')
 ])
-def test_feature_info(test_input, expected):
+def test_feature_info(test_input: str, expected: str):
+    """
+    Tests GET feature_info function
+
+    Args:
+        test_input (str): example input
+        expected (str): example output
+    """
     response = client.get(f'/feature_info/{test_input}')
     assert response.status_code == HTTPStatus.OK
     assert response.request.method == "GET"
@@ -28,6 +43,9 @@ def test_feature_info(test_input, expected):
 
 
 def test_predict():
+    """
+    Tests POST predict function when successful against a sample
+    """
     data = {
         'age': 38,
         'fnlgt': 15,
@@ -46,6 +64,9 @@ def test_predict():
 
 
 def test_missing_feature_predict():
+    """
+    Tests POST predict function when failed due to missing features
+    """
     data = {
         "age": 0
     }

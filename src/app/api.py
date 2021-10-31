@@ -1,7 +1,12 @@
+"""
+Author: Ibrahim Sherif
+Date: October, 2021
+This script holds the fastapi and routing functions
+"""
 import yaml
 import joblib
-import pandas as pd
 import numpy as np
+import pandas as pd
 from fastapi import FastAPI, Body
 
 from config import MODEL_DIR, APP_CONFIG

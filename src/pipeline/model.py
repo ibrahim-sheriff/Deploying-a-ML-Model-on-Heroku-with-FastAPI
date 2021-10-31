@@ -3,6 +3,8 @@ Author: Ibrahim Sherif
 Date: October, 2021
 This script holds the model functions needed to build, train and evaluate the model
 """
+import sys
+import logging
 from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LogisticRegression
@@ -12,13 +14,27 @@ from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.model_selection import GridSearchCV, StratifiedKFold
 
 
-def get_model_pipeline(model, feats):
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
+
+def get_model_pipeline(model, feats):
+    """
+    Creates model pipeline with feature preprocessing steps for
+    encoding, scaling and handling missing data
+
+    Args:
+        model (sklearn model): sklearn model either RandomForestClassifier/LogisticRegression
+        feats (dict): dict of features for each step of the pipeline check config.py
+
+    Returns:
+        model_pipe (sklearn pipeline/model): sklearn model or pipeline
+    """
     try:
         assert isinstance(model, (LogisticRegression, RandomForestClassifier))
-    except AssertionError:
-        raise Exception(
-            "Model should be RandomForestClassifier or LogisticRegression")
+    except AssertionError as error:
+        logging.error(
+            "Model should be RandomForestClassifier or LogisticRegression %s",
+            error)
 
     if isinstance(model, RandomForestClassifier):
         encoder = OrdinalEncoder(
@@ -55,7 +71,19 @@ def get_model_pipeline(model, feats):
 
 
 def train_model(model, X_train, y_train, param_grid):
+    """
+    Performs gridsearch on a model to choose best parameters
+    and returns best model found
 
+    Args:
+        model (sklearn pipeline/model): sklearn model or pipeline
+        X_train (pandas dataframe): Train features data
+        y_train (pandas dataframe): Train labels data
+        param_grid (dict): Parameters grid check config.py
+
+    Returns:
+        model (sklearn pipeline/model): sklearn model or pipeline
+    """
     g_search = GridSearchCV(
         model,
         param_grid,
@@ -71,6 +99,15 @@ def train_model(model, X_train, y_train, param_grid):
 
 
 def inference_model(model, X):
+    """
+    Performs model inference
 
+    Args:
+        model (sklearn pipeline/model): sklearn model or pipeline
+        X (pandas dataframe): Features data
+
+    Returns:
+        None
+    """
     preds = model.predict(X)
     return preds

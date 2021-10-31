@@ -7,7 +7,12 @@ import great_expectations as ge
 
 
 def test_columns_exist(data: ge.dataset.PandasDataset):
+    """
+    Test if all expected columns exists
 
+    Args:
+        data (ge.dataset.PandasDataset): Data to be tested
+    """
     columns = [
         'age',
         'workclass',
@@ -32,7 +37,12 @@ def test_columns_exist(data: ge.dataset.PandasDataset):
 
 
 def test_column_dtypes(data: ge.dataset.PandasDataset):
+    """
+    Tests if columns are of correct datatypes
 
+    Args:
+        data (ge.dataset.PandasDataset): Data to be tested
+    """
     columns = {
         'age': 'int64',
         'workclass': 'object',
@@ -57,14 +67,24 @@ def test_column_dtypes(data: ge.dataset.PandasDataset):
 
 
 def test_education_num_column(data: ge.dataset.PandasDataset):
+    """
+    Tests if education column values is within correct range
 
+    Args:
+        data (ge.dataset.PandasDataset): Data to be tested
+    """
     assert data.expect_column_values_to_be_between(
         'education_num', 1, 17
     )['success'], "education_num column includes unknown category"
 
 
 def test_marital_status(data: ge.dataset.PandasDataset):
+    """
+    Tests if martial status values are with correct categories
 
+    Args:
+        data (ge.dataset.PandasDataset):  Data to be tested
+    """
     categs = [
         'never-married',
         'married-civ-spouse',
@@ -81,13 +101,24 @@ def test_marital_status(data: ge.dataset.PandasDataset):
 
 
 def test_label_salary(data: ge.dataset.PandasDataset):
+    """
+    Tests if salary label contains only two correct classes
 
+    Args:
+        data (ge.dataset.PandasDataset):  Data to be tested
+    """
     assert data.expect_column_distinct_values_to_equal_set(
         'salary', ['<=50k', '>50k']
     )['success'], "salary column includes more than two classes"
 
 
 def test_hours_per_week_range(data: ge.dataset.PandasDataset):
+    """
+    Tests if hours_per_week column values are within correct range
+
+    Args:
+        data (ge.dataset.PandasDataset):  Data to be tested
+    """
     data.expect_column_values_to_be_between
     assert data.expect_column_values_to_be_between(
         'hours_per_week', 1, 99
