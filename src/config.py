@@ -15,14 +15,14 @@ RANDOM_STATE = 17
 __MAIN_DIR = Path(__file__).parent.parent.absolute()
 
 MODEL = RandomForestClassifier(
-    class_weight='balanced',
-    random_state=RANDOM_STATE)
+   class_weight='balanced',
+   random_state=RANDOM_STATE)
 # MODEL = LogisticRegression(
 #     max_iter=2000,
 #     class_weight='balanced',
 #     random_state=RANDOM_STATE)
-PARAM_GRID = None
 
+PARAM_GRID = None
 if isinstance(MODEL, RandomForestClassifier):
     PARAM_GRID = {
         'model__n_estimators': list(range(50, 151, 25)),
@@ -66,5 +66,5 @@ DATA_DIR = os.path.join(__MAIN_DIR, 'data', __DATA_FILE)
 MODEL_DIR = os.path.join(__MAIN_DIR, 'models', __MODEL_FILE)
 EVAL_DIR = os.path.join(__MAIN_DIR, 'metrics', __EVAL_FILE)
 SLICE_DIR = os.path.join(__MAIN_DIR, 'metrics', __SLICE_FILE)
-
-APP_CONFIG = os.path.join(__MAIN_DIR, 'src', 'app', 'examples.yaml')
+PLOT_DIR = os.path.join(__MAIN_DIR, 'plots')
+EXAMPLES_DIR = os.path.join(__MAIN_DIR, 'src', 'app', 'examples.yaml')

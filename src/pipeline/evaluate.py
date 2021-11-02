@@ -1,6 +1,6 @@
 import sys
 import logging
-from sklearn.metrics import fbeta_score, precision_score, recall_score
+from sklearn.metrics import fbeta_score, precision_score, recall_score, classification_report
 
 from pipeline.model import inference_model
 
@@ -24,6 +24,7 @@ def compute_metrics(y_true, y_pred):
     f1 = fbeta_score(y_true, y_pred, beta=1, zero_division=1)
     precision = precision_score(y_true, y_pred, zero_division=1)
     recall = recall_score(y_true, y_pred, zero_division=1)
+    # print(classification_report(y_true, y_pred))
 
     return f1, precision, recall
 

@@ -9,16 +9,24 @@ import numpy as np
 import pandas as pd
 from fastapi import FastAPI, Body
 
-from config import MODEL_DIR, APP_CONFIG
+from config import MODEL_DIR, EXAMPLES_DIR
 from app.schemas import Person, FeatureInfo
 
 
-model = joblib.load(MODEL_DIR)
+app = FastAPI(
+    title="Udacity - Project 3",
+    description="Deploying a ML Model on Heroku with FastAPI",
+    version="0.1",
+)
 
-with open(APP_CONFIG) as fp:
-    config = yaml.safe_load(fp)
 
-app = FastAPI()
+@app.on_event("startup")
+def load_artifacts():
+    global model, examples
+    model = joblib.load(MODEL_DIR)
+
+    with open(EXAMPLES_DIR) as fp:
+        examples = yaml.safe_load(fp)
 
 
 @app.get("/")
@@ -29,17 +37,17 @@ async def greetings():
 @app.get("/feature_info/{feature_name}")
 async def feature_info(feature_name: FeatureInfo):
 
-    info = config['features_info'][feature_name]
+    info = examples['features_info'][feature_name]
     return info
 
 
 @app.post("/predict/")
-async def predict(person: Person = Body(..., examples=config['post_examples'])):
+async def predict(person: Person = Body(..., examples=examples['post_examples'])):
 
     person = person.dict()
     features = np.array([person[f]
-                        for f in config['features_info'].keys()]).reshape(1, -1)
-    df = pd.DataFrame(features, columns=config['features_info'].keys())
+                        for f in examples['features_info'].keys()]).reshape(1, -1)
+    df = pd.DataFrame(features, columns=examples['features_info'].keys())
 
     pred_label = int(model.predict(df))
     pred_probs = float(model.predict_proba(df)[:, 1])

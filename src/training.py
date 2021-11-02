@@ -46,7 +46,7 @@ def run():
     with open(config.SLICE_DIR, 'w') as file:
         for col in config.SLICE_COLUMNS:
             evaluate_slices(file, model_pipe, col, X_train, y_train, "train")
-            evaluate_slices(file, model_pipe, col, X_test, y_test, "train")
+            evaluate_slices(file, model_pipe, col, X_test, y_test, "test")
 
     logging.info("Saving model")
     joblib.dump(model_pipe, config.MODEL_DIR)
