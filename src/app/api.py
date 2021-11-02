@@ -19,14 +19,9 @@ app = FastAPI(
     version="0.1",
 )
 
-
-@app.on_event("startup")
-def load_artifacts():
-    global model, examples
-    model = joblib.load(MODEL_DIR)
-
-    with open(EXAMPLES_DIR) as fp:
-        examples = yaml.safe_load(fp)
+model = joblib.load(MODEL_DIR)
+with open(EXAMPLES_DIR) as fp:
+    examples = yaml.safe_load(fp)
 
 
 @app.get("/")
