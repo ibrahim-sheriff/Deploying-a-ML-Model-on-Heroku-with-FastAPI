@@ -14,7 +14,7 @@ from config import MODEL_DIR, EXAMPLES_DIR
 from app.schemas import Person, FeatureInfo
 
 
-if "DYNO" in os.environ and os.path.isdir(".dvc"):
+if "DYNO" in os.environ and os.path.isdir("../../.dvc"):
     os.system("dvc config core.no_scm true")
     if os.system("dvc pull") != 0:
         exit("dvc pull failed")
