@@ -7,7 +7,7 @@
 - **Random Forest** and **Logistic Regression**, only **Random Forest** will be considered for evaluation since it shows better results.
 - Developed by me for the third project for Udacity's Machine Learning DevOps nanodegree, October 2021.
 
-<img src="screenshots/model_pipeline.PNG" width="250" height="150">
+<img src="screenshots/model_pipeline.PNG" width="400" height="200">
 
 ## Intended Use
 - Intended to be used to determine what features impacts the income of a person.
