@@ -26,14 +26,9 @@ app = FastAPI(
     version="0.1",
 )
 
-# model = joblib.load(MODEL_DIR)
+model = joblib.load(MODEL_DIR)
 with open(EXAMPLES_DIR) as fp:
     examples = yaml.safe_load(fp)
-
-@app.on_event("startup")
-async def startup_event():
-    global model
-    model = joblib.load(MODEL_DIR)
 
 
 @app.get("/")
