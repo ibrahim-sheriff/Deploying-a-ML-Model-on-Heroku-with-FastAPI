@@ -53,45 +53,57 @@ pip install -r requirements.txt
 ## Usage
 The config file contains ```MODEL``` variable with a choice of either ```LogisticRegression``` or ```RandomForestClassifier```. Each model with a set of parameters for the grid search ```PARAM_GRID```. You can your own model with the parameters needed. The ```SLICE_COLUMNS``` variable holds the columns for slice evaluation.
 
-Start training
+1- Start training
 ```bash
 cd src
 python training.py
 ```
 This saves a seralized model, generates evaluation metrics, slice evaluation metrics and figures,
 
-Start FastAPI app
+2- Start FastAPI app
 ```bash
 cd src
 uvicorn app.api:app --reload
 ```
 
-FastAPI app documentation to test the API from the browser
+3- FastAPI app documentation to test the API from the browser
 ```
 http://127.0.0.1:8000/docs
 ```
 
-<img src="screenshots/example.png" width="400" height="250">
+<img src="screenshots/example.PNG">
 
-Testing the project
+4- Testing the project
 ```bash
 cd src
 pytest -vv
 ```
+5- Showing tracked files with DVC
+```bash
+dvc dag
+```
 
-CI using github action will be triggered upon pushing to github
+<img src="screenshots/dvcdag.PNG">
+
+6- CI using github action will be triggered upon pushing to github
 ```bash
 git push
 ```
 
-CD is enabled from within Heroku app settings
+7- CD is enabled from within Heroku app settings
 
-<img src="screenshots/continuous_deployment.png" width="400" height="250">
+<img src="screenshots/continuous_deployment.png">
 
-After deploying on Heroku, demo post request
+8- Starting the app on Heroku
+
+<img src="screenshots/live_get.PNG">
+
+9- Test deployment on Heroku, demo post request
 ```bash
 python request_heroku.py
 ```
+
+<img src="screenshots/live_post.PNG">
 
 ## License
 Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License. See ```LICENSE``` for more information.
