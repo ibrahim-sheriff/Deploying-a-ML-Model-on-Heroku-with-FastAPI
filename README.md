@@ -1,3 +1,4 @@
+![CI](https://github.com/ibrahim-sheriff/Deploying-a-ML-Model-on-Heroku-with-FastAPI/actions/workflows/main.yml/badge.svg)
 # Deploying-a-ML-Model-on-Heroku-with-FastAPI
 The third project [ML DevOps Engineer Nanodegree](https://www.udacity.com/course/machine-learning-dev-ops-engineer-nanodegree--nd0821) by Udacity. Instructions are available in udacity's [repository](https://github.com/udacity/nd0821-c3-starter-code/tree/master/starter)
 
